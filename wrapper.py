@@ -1,4 +1,5 @@
 from tqdm import tqdm
+import sys
 
 import torch
 from torch import optim
@@ -47,8 +48,10 @@ class Wrapper():
     def __init__(self,modelIndex):
         self.trainLoader, self.testLoader, self.trainLen, self.testLen = download()
         if(modelIndex == 0):
+            print("Using ViT")
             self.model = ViT().to(device)
         else:
+            print("Using CNN")
             self.model = CNN().to(device)
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr)
@@ -84,6 +87,8 @@ class Wrapper():
         print(f"Test Accuracy \t\t {correct/self.testLen}")
 
 if(__name__ == "__main__"):
-    vitWrapper = Wrapper(0)
+    args = sys.argv
+    assert len(args)==2
+    vitWrapper = Wrapper(int(args[1]))
     vitWrapper.train()
     vitWrapper.test()
