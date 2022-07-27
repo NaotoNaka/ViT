@@ -7,8 +7,14 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+For ViT training/testing:
 ```
-python wrapper.py
+python wrapper.py 0
+```
+
+For CNN training/testing:
+```
+python wrapper.py 1
 ```
 
 ## Licence
