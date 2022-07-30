@@ -24,11 +24,11 @@ class ViT(nn.Module):
     def patchify(self,img):
         horizontal = torch.stack(torch.chunk(img,splitRow,dim=2),dim=1)
         patches = torch.cat(torch.chunk(horizontal,splitCol,dim=4),dim=1)
-        flatPatch = torch.flatten(patches,start_dim=2)
-        return flatPatch
+        return patches
 
     def forward(self,x):
         x=self.patchify(x)
+        x=torch.flatten(x,start_dim=2)
         x=self.patchEmbedding(x)
         clsToken = self.cls.repeat_interleave(x.shape[0],dim=0)
         x=torch.cat((clsToken,x),dim=1)
