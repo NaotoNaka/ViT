@@ -89,6 +89,6 @@ class Wrapper():
 if(__name__ == "__main__"):
     args = sys.argv
     assert len(args)==2
-    vitWrapper = Wrapper(int(args[1]))
+    vitWrapper = Wrapper(int(args[1])) # 0->ViT, 1->CNN
     vitWrapper.train()
     vitWrapper.test()
