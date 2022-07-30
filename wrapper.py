@@ -70,7 +70,7 @@ class Wrapper():
                 loss.backward()
                 self.optimizer.step()
                 trainLoss += loss.item()
-            print(f"\t\t\t Training Loss:{trainLoss/self.trainLen}")
+            print(f"\t\t\t Training Loss: {trainLoss/self.trainLen}")
             self.test()
     def test(self):
         self.model.eval()
